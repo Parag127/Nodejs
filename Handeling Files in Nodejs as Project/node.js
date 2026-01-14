@@ -3,39 +3,32 @@ const filePath =  "./file.json";
 
 const loadTasks = () => {
   try {
-    const dataBuffer = fs.readFileSync(filePath)
-    const dataJSON = dataBuffer.toString()
-    return JSON.parse(dataJSON);
-    
+    const data = fs.readFileSync(filePath);
+    const dataObj = data.toString();
+    return JSON.parse(dataObj);
   } catch (error) {
-    return []
+    return [];
   }
 }
 
 const addTask = (task) => {
   const tasks = loadTasks();
-  tasks.push(task);
-  saveTasks(tasks);
-}
-
-const saveTasks = (tasks) => {
-  const dataJSON = JSON.strinfigy(tasks);
-  fs.writeFileSync(filePath, dataJSON);
+  fs.writeFileSync(filePath, JSON.stringify([...tasks, task]));
 }
 
 const listTasks = () => {
   const tasks = loadTasks();
-  tasks.forEach((task, i) => {
-    console.log(`${i + 1} - ${task}`)
+  tasks.forEach ((task, index) => {
+    console.log(`${index + 1} - ${task}`);
   })
 }
 
 const removeTask = () => {
   const tasks = loadTasks();
-  const i = parseInt(process.argv[3]);
-  tasks.splice(i - 1, 1);
-  saveTasks(tasks);
-} 
+  const index = parseInt(process.argv[3]);
+  tasks.splice(index - 1, 1);
+  fs.writeFileSync(filePath, JSON.stringify(tasks));
+}
 
 const command = process.argv[2]
 const argument = process.argv[3]
