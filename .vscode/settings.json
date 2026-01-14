@@ -1,0 +1,10 @@
+{
+  "editor.quickSuggestions": { "other": true, "comments": false, "strings": true },
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.snippetSuggestions": "top",
+  "editor.tabCompletion": "on",
+  "javascript.suggest.enabled": true,
+  "files.associations": {
+    "*.js": "javascript"
+  }
+}
